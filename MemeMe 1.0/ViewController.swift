@@ -25,6 +25,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)
         shareActionButton.isEnabled = false
+        
+        // Add observer for device rotation move the textfield farther apart in landscape
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.rotated(_:)), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -180,5 +183,26 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         memeImageView.image = nil
         currentMemeImage = nil
     }
+    
+    // MARK: Adjust the textfields on landscape
+    @IBOutlet weak var topTextfieldConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bottomTextfieldConstraint: NSLayoutConstraint!
+    
+    func rotated(_ notification: NSNotification){
+        if(UIDeviceOrientationIsLandscape(UIDevice.current.orientation))
+        {
+            print("landscape")
+            topTextfieldConstraint.constant = 5
+            bottomTextfieldConstraint.constant = 5
+        }
+        
+        if(UIDeviceOrientationIsPortrait(UIDevice.current.orientation))
+        {
+            print("Portrait")
+            topTextfieldConstraint.constant = 28
+            bottomTextfieldConstraint.constant = 40
+        }
+    }
+    
 }
 

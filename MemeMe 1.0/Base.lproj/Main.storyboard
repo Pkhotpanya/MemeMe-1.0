@@ -79,7 +79,7 @@
                             <constraint firstItem="dci-b2-nmz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Ver-9L-IzF"/>
                             <constraint firstAttribute="trailing" secondItem="jWy-im-XTK" secondAttribute="trailing" id="WaV-37-o2H"/>
                             <constraint firstItem="JYQ-en-BKy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Yc0-Ub-6PN"/>
-                            <constraint firstItem="JYQ-en-BKy" firstAttribute="top" secondItem="3eN-ks-u7s" secondAttribute="bottom" constant="35" id="ZCI-eT-SlM"/>
+                            <constraint firstItem="JYQ-en-BKy" firstAttribute="top" secondItem="3eN-ks-u7s" secondAttribute="bottom" constant="40" id="ZCI-eT-SlM"/>
                             <constraint firstItem="9Pa-sH-dZK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="aBR-Ga-js9"/>
                             <constraint firstItem="jWy-im-XTK" firstAttribute="top" secondItem="9Pa-sH-dZK" secondAttribute="bottom" constant="28" id="aUW-5X-nSb"/>
                             <constraint firstItem="jWy-im-XTK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="hvy-TP-YUd"/>
@@ -92,6 +92,7 @@
                     <connections>
                         <outlet property="albumButton" destination="hl5-pM-NLR" id="jYI-m0-L7E"/>
                         <outlet property="bottomTextField" destination="3eN-ks-u7s" id="1na-fL-oLc"/>
+                        <outlet property="bottomTextfieldConstraint" destination="ZCI-eT-SlM" id="t1o-ZO-9ep"/>
                         <outlet property="cameraButton" destination="iEj-mO-aHg" id="6gz-s5-FxE"/>
                         <outlet property="cancelButton" destination="R35-fU-XGD" id="gtI-45-2OY"/>
                         <outlet property="memeImageView" destination="dci-b2-nmz" id="dUg-TD-Nqs"/>
@@ -99,6 +100,7 @@
                         <outlet property="memeToolbar" destination="JYQ-en-BKy" id="9QT-VY-1SW"/>
                         <outlet property="shareActionButton" destination="ciE-cX-9f9" id="aFO-Ex-SAc"/>
                         <outlet property="topTextField" destination="jWy-im-XTK" id="kGG-v6-Ou6"/>
+                        <outlet property="topTextfieldConstraint" destination="aUW-5X-nSb" id="u6m-jm-zwa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
