@@ -15,6 +15,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         imagePicker.delegate = self
+        
+        // FIXME: I can't use isEnabled from the UIBarButtonItem so I changed it through NSObject instead.
+        cameraButton.setValue(UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera), forKey: "enabled")
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,9 +42,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
     }
     @IBAction func cameraButtonPressed(_ sender: AnyObject) {
-        
+        self.imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+        self.present(imagePicker, animated: true, completion: nil)
     }
     @IBAction func albumButtonPressed(_ sender: AnyObject) {
+        self.imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
         self.present(imagePicker, animated: true, completion: nil)
     }
     // MARK: Image helper functions
@@ -49,7 +54,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            self.memeImageView.image = image
+            memeImageView.image = image
         }
         picker.dismiss(animated: true, completion: nil)
     }
