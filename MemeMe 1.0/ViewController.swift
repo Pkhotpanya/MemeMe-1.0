@@ -92,6 +92,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.text = ""
+        currentTextField = textField.tag
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -100,17 +101,23 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     // MARK: Keyboard helper functions
+    var currentTextField: Int = 0
+    
     func subscribeToKeyboardNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     func keyboardWillShow(_ notification: NSNotification) {
-        self.view.frame.origin.y -= getKeyboardHeight(notification)
+        if currentTextField == 101 {
+            self.view.frame.origin.y -= getKeyboardHeight(notification)
+        }
     }
     
     func keyboardWillHide(_ notification: NSNotification) {
-        self.view.frame.origin.y += getKeyboardHeight(notification)
+        if currentTextField == 101 {
+            self.view.frame.origin.y += getKeyboardHeight(notification)
+        }
     }
 
     func getKeyboardHeight(_ notification: NSNotification) -> CGFloat {
