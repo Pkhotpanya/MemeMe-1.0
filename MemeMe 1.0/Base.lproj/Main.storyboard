@@ -1,14 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MemeMe_1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,11 +17,66 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dci-b2-nmz"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="TOP" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="qef-KR-zlp">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="knQ-hX-XcQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                            </textView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Pa-sH-dZK">
+                                <items>
+                                    <navigationItem id="yIY-WM-Bwr">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="ciE-cX-9f9"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="R35-fU-XGD"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JYQ-en-BKy">
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Vd0-Mo-Ple"/>
+                                    <barButtonItem systemItem="camera" id="iEj-mO-aHg"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ehI-1z-R1q"/>
+                                    <barButtonItem title="Album" id="hl5-pM-NLR"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="kkh-wc-OPc"/>
+                                </items>
+                            </toolbar>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="BOTTOM" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bjy-fW-aXd">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="c51-T4-HfV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="JYQ-en-BKy" secondAttribute="trailing" id="0OF-S3-ipr"/>
+                            <constraint firstAttribute="trailing" secondItem="bjy-fW-aXd" secondAttribute="trailing" id="65w-cb-D3t"/>
+                            <constraint firstItem="bjy-fW-aXd" firstAttribute="bottom" secondItem="JYQ-en-BKy" secondAttribute="top" constant="-14" id="6k2-di-0xu"/>
+                            <constraint firstItem="dci-b2-nmz" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="BdU-QW-sAq"/>
+                            <constraint firstAttribute="trailing" secondItem="dci-b2-nmz" secondAttribute="trailing" id="H3X-Mw-aLd"/>
+                            <constraint firstAttribute="trailing" secondItem="9Pa-sH-dZK" secondAttribute="trailing" id="IxT-yU-3Jh"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="dci-b2-nmz" secondAttribute="bottom" id="JvL-r1-kRO"/>
+                            <constraint firstItem="qef-KR-zlp" firstAttribute="top" secondItem="9Pa-sH-dZK" secondAttribute="bottom" constant="12" id="PMH-6b-t6g"/>
+                            <constraint firstItem="dci-b2-nmz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Ver-9L-IzF"/>
+                            <constraint firstItem="bjy-fW-aXd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="XIn-WN-DOs"/>
+                            <constraint firstItem="JYQ-en-BKy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Yc0-Ub-6PN"/>
+                            <constraint firstItem="9Pa-sH-dZK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="aBR-Ga-js9"/>
+                            <constraint firstAttribute="trailing" secondItem="qef-KR-zlp" secondAttribute="trailing" id="isE-uE-wsE"/>
+                            <constraint firstItem="9Pa-sH-dZK" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="nIS-bN-8mk"/>
+                            <constraint firstItem="qef-KR-zlp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="pXA-En-CzR"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="JYQ-en-BKy" secondAttribute="bottom" id="wve-Sv-vRi"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="134.48275862068968"/>
         </scene>
     </scenes>
 </document>
