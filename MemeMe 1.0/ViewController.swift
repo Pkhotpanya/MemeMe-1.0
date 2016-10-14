@@ -16,6 +16,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // Do any additional setup after loading the view, typically from a nib.
         imagePicker.delegate = self
         
+        // FIXME: Can't set defaultAttributedString either. Here we set the placeholder text with the text attributes.
+        topTextView.attributedText = NSAttributedString.init(string: topTextView.text, attributes: memeTextAttributes)
+        bottomTextView.attributedText = NSAttributedString.init(string: bottomTextView.text, attributes: memeTextAttributes)
+        
+        // FIXME: Changing the text also clears the center aligment set in the storyboard so we have to write it again.
+        topTextView.textAlignment = NSTextAlignment.center
+        bottomTextView.textAlignment = NSTextAlignment.center
+
         // FIXME: I can't use isEnabled from the UIBarButtonItem so I changed it through NSObject instead.
         cameraButton.setValue(UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera), forKey: "enabled")
     }
@@ -62,5 +70,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
+    
+    // MARK: Text helper functions
+    let memeTextAttributes = [
+        NSStrokeColorAttributeName : UIColor.black,
+        NSForegroundColorAttributeName : UIColor.white,
+        NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        NSStrokeWidthAttributeName : 1
+    ] as [String : Any]
+    
 }
 
