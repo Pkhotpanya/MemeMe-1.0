@@ -58,10 +58,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var albumButton: UIBarButtonItem!
     
     @IBAction func actionButtonPressed(_ sender: AnyObject) {
-        
+        currentMemeImage = generateMemedImage()
+        let activityVC = UIActivityViewController.init(activityItems: [currentMemeImage], applicationActivities: nil)
+        present(activityVC, animated: true) { 
+            self.saveMeme()
+        }
     }
     @IBAction func cancelButtonPressed(_ sender: AnyObject) {
-        
+        clearMemeEditor()
     }
     @IBAction func cameraButtonPressed(_ sender: AnyObject) {
         self.imagePicker.sourceType = UIImagePickerControllerSourceType.camera
@@ -78,6 +82,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             memeImageView.image = image
         }
+        shareActionButton.isEnabled = true
         picker.dismiss(animated: true, completion: nil)
     }
     
@@ -137,9 +142,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     // MARK: Create Meme object functions
-    func save() {
+    var currentMemeImage: UIImage!
+    
+    func saveMeme() {
         //Create the meme
-        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: memeImageView.image!, memeImage: generateMemedImage())
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: memeImageView.image!, memeImage: currentMemeImage)
         
         // Add it to the memes array in the Application Delegate
         (UIApplication.shared.delegate as!
@@ -163,6 +170,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         memeToolbar.isHidden = false
         
         return memedImage
+    }
+    
+    // MARK: Clear editor helper function
+    func clearMemeEditor(){
+        shareActionButton.isEnabled = false
+        topTextField.text = "TOP"
+        bottomTextField.text = "BOTTOM"
+        memeImageView.image = nil
+        currentMemeImage = nil
     }
 }
 
