@@ -30,17 +30,33 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Pa-sH-dZK">
                                 <items>
                                     <navigationItem id="yIY-WM-Bwr">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="ciE-cX-9f9"/>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="R35-fU-XGD"/>
+                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="ciE-cX-9f9">
+                                            <connections>
+                                                <action selector="actionButtonPressed:" destination="BYZ-38-t0r" id="173-FU-CS3"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="R35-fU-XGD">
+                                            <connections>
+                                                <action selector="cancelButtonPressed:" destination="BYZ-38-t0r" id="EZK-ju-G5w"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JYQ-en-BKy">
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Vd0-Mo-Ple"/>
-                                    <barButtonItem systemItem="camera" id="iEj-mO-aHg"/>
+                                    <barButtonItem systemItem="camera" id="iEj-mO-aHg">
+                                        <connections>
+                                            <action selector="cameraButtonPressed:" destination="BYZ-38-t0r" id="VVP-qQ-c0H"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ehI-1z-R1q"/>
-                                    <barButtonItem title="Album" id="hl5-pM-NLR"/>
+                                    <barButtonItem title="Album" id="hl5-pM-NLR">
+                                        <connections>
+                                            <action selector="albumButtonPressed:" destination="BYZ-38-t0r" id="20e-ok-1Pe"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="kkh-wc-OPc"/>
                                 </items>
                             </toolbar>
@@ -73,6 +89,15 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="JYQ-en-BKy" secondAttribute="bottom" id="wve-Sv-vRi"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="albumButton" destination="hl5-pM-NLR" id="jYI-m0-L7E"/>
+                        <outlet property="bottomTextView" destination="bjy-fW-aXd" id="uDX-ug-Pak"/>
+                        <outlet property="cameraButton" destination="iEj-mO-aHg" id="6gz-s5-FxE"/>
+                        <outlet property="cancelButton" destination="R35-fU-XGD" id="gtI-45-2OY"/>
+                        <outlet property="memeImageView" destination="dci-b2-nmz" id="dUg-TD-Nqs"/>
+                        <outlet property="shareActionButton" destination="ciE-cX-9f9" id="aFO-Ex-SAc"/>
+                        <outlet property="topTextView" destination="qef-KR-zlp" id="4bO-vA-wCL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
