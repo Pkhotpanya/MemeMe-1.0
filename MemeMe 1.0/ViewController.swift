@@ -26,7 +26,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var bottomTextfieldConstraint: NSLayoutConstraint!
     
     let imagePicker = UIImagePickerController()
-    var currentTextField: Int = 0
     var currentMemeImage: UIImage!
     let memeTextAttributes = [
         NSStrokeColorAttributeName : UIColor.black,
@@ -118,7 +117,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.text = ""
-        currentTextField = textField.tag
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -133,13 +131,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func keyboardWillShow(_ notification: NSNotification) {
-        if currentTextField == 101 {
+        if bottomTextField.isFirstResponder{
             self.view.frame.origin.y -= getKeyboardHeight(notification)
         }
     }
     
     func keyboardWillHide(_ notification: NSNotification) {
-        if currentTextField == 101 {
+        if bottomTextField.isFirstResponder{
             self.view.frame.origin.y += getKeyboardHeight(notification)
         }
     }
