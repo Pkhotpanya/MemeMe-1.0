@@ -10,6 +10,31 @@ import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
+    @IBOutlet weak var memeNavigationBar: UINavigationBar!
+    @IBOutlet weak var memeToolbar: UIToolbar!
+    
+    @IBOutlet weak var memeImageView: UIImageView!
+    @IBOutlet weak var topTextField: UITextField!
+    @IBOutlet weak var bottomTextField: UITextField!
+    
+    @IBOutlet weak var shareActionButton: UIBarButtonItem!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var cameraButton: UIBarButtonItem!
+    @IBOutlet weak var albumButton: UIBarButtonItem!
+    
+    @IBOutlet weak var topTextfieldConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bottomTextfieldConstraint: NSLayoutConstraint!
+    
+    let imagePicker = UIImagePickerController()
+    var currentTextField: Int = 0
+    var currentMemeImage: UIImage!
+    let memeTextAttributes = [
+        NSStrokeColorAttributeName : UIColor.black,
+        NSForegroundColorAttributeName : UIColor.white,
+        NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        NSStrokeWidthAttributeName : -1
+        ] as [String : Any]
+
     // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,19 +72,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: View interface
-    @IBOutlet weak var memeNavigationBar: UINavigationBar!
-    @IBOutlet weak var memeToolbar: UIToolbar!
-    
-    @IBOutlet weak var memeImageView: UIImageView!
-    @IBOutlet weak var topTextField: UITextField!
-    @IBOutlet weak var bottomTextField: UITextField!
-
-    @IBOutlet weak var shareActionButton: UIBarButtonItem!
-    @IBOutlet weak var cancelButton: UIBarButtonItem!
-    @IBOutlet weak var cameraButton: UIBarButtonItem!
-    @IBOutlet weak var albumButton: UIBarButtonItem!
-    
+     // MARK: View interface
     @IBAction func actionButtonPressed(_ sender: AnyObject) {
         currentMemeImage = generateMemedImage()
         let activityVC = UIActivityViewController.init(activityItems: [currentMemeImage], applicationActivities: nil)
@@ -78,9 +91,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
         self.present(imagePicker, animated: true, completion: nil)
     }
-    // MARK: Image helper functions
-    let imagePicker = UIImagePickerController()
     
+    // MARK: Image helper functions
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             memeImageView.image = image
@@ -94,13 +106,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     // MARK: Text style and helper functions
-    let memeTextAttributes = [
-        NSStrokeColorAttributeName : UIColor.black,
-        NSForegroundColorAttributeName : UIColor.white,
-        NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-        NSStrokeWidthAttributeName : -1
-    ] as [String : Any]
-    
     func configure(textfield: UITextField ){
         textfield.defaultTextAttributes = memeTextAttributes
     }
@@ -116,8 +121,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     // MARK: Keyboard helper functions
-    var currentTextField: Int = 0
-    
     func subscribeToKeyboardNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -149,8 +152,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     // MARK: Create Meme object functions
-    var currentMemeImage: UIImage!
-    
     func saveMeme() {
         //Create the meme
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: memeImageView.image!, memeImage: currentMemeImage)
@@ -189,9 +190,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     // MARK: Adjust the textfields on landscape
-    @IBOutlet weak var topTextfieldConstraint: NSLayoutConstraint!
-    @IBOutlet weak var bottomTextfieldConstraint: NSLayoutConstraint!
-    
     func rotated(_ notification: NSNotification){
         if(UIDeviceOrientationIsLandscape(UIDevice.current.orientation))
         {
