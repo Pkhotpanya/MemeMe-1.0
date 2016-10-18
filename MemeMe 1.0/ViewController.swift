@@ -44,10 +44,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         configure(textfield: topTextField)
         configure(textfield: bottomTextField)
         
-        // Changing the text also clears the center aligment set in the storyboard so we have to write it again.
-        topTextField.textAlignment = NSTextAlignment.center
-        bottomTextField.textAlignment = NSTextAlignment.center
-        
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)
         shareActionButton.isEnabled = false
         
@@ -90,12 +86,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         clearMemeEditor()
     }
     @IBAction func cameraButtonPressed(_ sender: AnyObject) {
-        self.imagePicker.sourceType = UIImagePickerControllerSourceType.camera
-        self.present(imagePicker, animated: true, completion: nil)
+        presentPicker(sourceType: .camera)
     }
     @IBAction func albumButtonPressed(_ sender: AnyObject) {
-        self.imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
-        self.present(imagePicker, animated: true, completion: nil)
+        presentPicker(sourceType: .photoLibrary)
     }
     
     // MARK: Image helper functions
@@ -111,9 +105,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         picker.dismiss(animated: true, completion: nil)
     }
     
+    func presentPicker(sourceType:UIImagePickerControllerSourceType){
+        self.imagePicker.sourceType = sourceType
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
     // MARK: Text style and helper functions
     func configure(textfield: UITextField ){
         textfield.defaultTextAttributes = memeTextAttributes
+        textfield.textAlignment = NSTextAlignment.center
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
