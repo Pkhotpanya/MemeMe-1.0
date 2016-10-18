@@ -16,8 +16,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // Do any additional setup after loading the view, typically from a nib.
         imagePicker.delegate = self
         
-        topTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.defaultTextAttributes = memeTextAttributes
+        configure(textfield: topTextField)
+        configure(textfield: bottomTextField)
         
         // Changing the text also clears the center aligment set in the storyboard so we have to write it again.
         topTextField.textAlignment = NSTextAlignment.center
@@ -100,6 +100,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
         NSStrokeWidthAttributeName : -1
     ] as [String : Any]
+    
+    func configure(textfield: UITextField ){
+        textfield.defaultTextAttributes = memeTextAttributes
+    }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.text = ""
