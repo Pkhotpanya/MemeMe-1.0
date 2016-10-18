@@ -168,8 +168,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // Create a UIImage that combines the Image View and the Textfields
     func generateMemedImage() -> UIImage {
         // TODO: Hide toolbar and navbar
-        memeNavigationBar.isHidden = true
-        memeToolbar.isHidden = true
+        configureBars(hidden: true)
         
         // render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
@@ -178,10 +177,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         UIGraphicsEndImageContext()
         
         // TODO:  Show toolbar and navbar
-        memeNavigationBar.isHidden = false
-        memeToolbar.isHidden = false
+        configureBars(hidden: false)
         
         return memedImage
+    }
+    
+    func configureBars(hidden: Bool){
+        memeNavigationBar.isHidden = hidden
+        memeToolbar.isHidden = hidden
     }
     
     // MARK: Clear editor helper function
