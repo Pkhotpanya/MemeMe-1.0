@@ -76,9 +76,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBAction func actionButtonPressed(_ sender: AnyObject) {
         currentMemeImage = generateMemedImage()
         let activityVC = UIActivityViewController.init(activityItems: [currentMemeImage], applicationActivities: nil)
-        present(activityVC, animated: true) { 
-            self.saveMeme()
+        
+        activityVC.completionWithItemsHandler = {
+            (activityType, completion, returnedItems, error) in
+            if completion {
+                self.saveMeme()
+            }
         }
+        
+        present(activityVC, animated: true)
     }
     @IBAction func cancelButtonPressed(_ sender: AnyObject) {
         clearMemeEditor()
